@@ -19,7 +19,7 @@ const inputSty = {
   padding: "8px 20px",
   color: "gray",
   fontFamily: "inherit",
-  fontSize: "inherit",
+  fontSize: "0.65em",
   fontWeight: "500",
   lineHeight: "inherit",
   transition: "0.3s ease"
@@ -27,9 +27,9 @@ const inputSty = {
 
 const labelSty = {
   display: "block",
-  margin: "20px 10px 10px 5px",
+  margin: "8px 10px 10px 5px",
   color: "gray",
-  fontSize: "12px",
+  fontSize: "0.75em",
   fontWeight: "500",
   lineHeight: "1",
   textTransform: "uppercase",
@@ -48,22 +48,31 @@ const labelNameSty = {
 };
 
 class SurveyComponent extends Component {
-  constructor(props) {
-    super(props);
-    console.dir(props);
-    this.state = {
-      //   ligaId: this.props.id,
-      nombre: "",
-      apellido: "",
-      estatura: "",
-      peso: "",
-      imc: "",
-      lateralidad: "",
-      ejercita: "",
-      sangre: "",
-      genero: ""
-    };
-  }
+  state = {
+    nombre: "",
+    apellido: "",
+    estatura: "",
+    peso: "",
+    imc: "",
+    lateralidad: "",
+    ejercita: "",
+    sangre: "",
+    genero: ""
+  };
+
+  inputChange = e => {
+    e.preventDefault();
+    const name = e.target.attributes.name.value;
+    const value = e.target.value;
+
+    // console.log(e.target);
+    // console.log(name);
+    // console.log(value);
+    this.setState({ [name]: value });
+
+    console.log(this.state);
+  };
+
   renderEstatura = () => {
     var options = [];
     var centimeter = 1.4;
@@ -84,21 +93,18 @@ class SurveyComponent extends Component {
   };
   render() {
     return (
-      <React.Fragment>
-        <div className="mr-auto ml-auto">
-          {/**          <h3 style={labelNameSty}>{this.state.title}</h3> */}
-          <hr></hr>
-        </div>
-
+      <div
+        className="col-10 mr-auto ml-auto"
+        // style={{ fontSize: "0.55em" }}
+      >
         <div className="col-12">
           <FormGroup className="col-12">
             <Input
-              onChange={event => this.state.inputChange(event)}
+              onChange={event => this.inputChange(event)}
               style={inputSty}
               type="name"
               name="nombre"
               placeholder="Nombre"
-              className="col-6 mr-auto ml-auto"
             />
           </FormGroup>
         </div>
@@ -109,11 +115,11 @@ class SurveyComponent extends Component {
               Estatura (en metros)
             </Label>
             <Input
+              onChange={event => this.inputChange(event)}
               type="select"
               style={inputSty}
-              name="select"
+              name="estatura"
               id="exampleSelect"
-              className="col-6 mr-auto ml-auto"
             >
               {this.renderEstatura()}
             </Input>
@@ -126,11 +132,11 @@ class SurveyComponent extends Component {
               Peso (en libras)
             </Label>
             <Input
+              onChange={event => this.inputChange(event)}
               type="select"
               style={inputSty}
-              name="select"
+              name="peso"
               id="exampleSelect"
-              className="col-6 mr-auto ml-auto"
             >
               {this.renderPeso()}
             </Input>
@@ -143,12 +149,13 @@ class SurveyComponent extends Component {
               Edad
             </Label>
             <Input
-              onChange={event => this.state.inputChange(event)}
+              min="5"
+              max="99"
+              onChange={event => this.inputChange(event)}
               style={inputSty}
               type="number"
               name="edad"
               placeholder="Edad"
-              className="col-6  mr-auto ml-auto"
             />
           </FormGroup>
         </div>
@@ -159,11 +166,11 @@ class SurveyComponent extends Component {
               Genero
             </Label>
             <Input
+              onChange={event => this.inputChange(event)}
               type="select"
               style={inputSty}
-              name="select"
+              name="genero"
               id="exampleSelect"
-              className="col-6 mr-auto ml-auto"
             >
               <option>Femenino</option>
               <option>Masculino</option>
@@ -174,15 +181,13 @@ class SurveyComponent extends Component {
 
         <div className="col-12 mr-auto ml-auto">
           <FormGroup className="col-12">
-            <Label style={labelSty} for="exampleName">
-              Genero
-            </Label>
+            <Label style={labelSty}>Genero</Label>
             <Input
+              onChange={event => this.inputChange(event)}
               type="select"
               style={inputSty}
-              name="select"
+              name="sangre"
               id="exampleSelect"
-              className="col-6 mr-auto ml-auto"
             >
               <option>O-</option>
               <option>O+</option>
@@ -202,11 +207,11 @@ class SurveyComponent extends Component {
               Lateralidad
             </Label>
             <Input
+              onChange={event => this.inputChange(event)}
               type="select"
               style={inputSty}
-              name="select"
+              name="lateralidad"
               id="exampleSelect"
-              className="col-6 mr-auto ml-auto"
             >
               <option>Derecho</option>
               <option>Izquierdo</option>
@@ -216,28 +221,53 @@ class SurveyComponent extends Component {
         </div>
         <div className="col-12 mr-auto ml-auto">
           <FormGroup className="col-12">
-            <Label
-              style={labelSty}
-              for="exampleName"
-              className="col-8 mr-auto ml-auto"
-            >
+            <Label style={labelSty} for="exampleName">
               Practica deportes al menos 3 dias a la semana
             </Label>
             <Input
+              onChange={event => this.inputChange(event)}
               type="select"
               style={inputSty}
-              name="select"
+              name="ejercita"
               id="exampleSelect"
-              className="col-6 mr-auto ml-auto"
             >
               <option>No</option>
               <option>Si</option>
             </Input>
           </FormGroup>
+
+          <div className="row col-6 mr-auto ml-auto">
+            <FormGroup check className="col-4 mr-auto ml-auto">
+              <Label check style={labelSty} for="exampleName">
+                <Input
+                  type="radio"
+                  name="ejercita"
+                  // style={inputSty}
+                  value="si"
+                  onChange={event => this.inputChange(event)}
+                />
+                Si
+              </Label>
+            </FormGroup>
+            <FormGroup check className="col-4 mr-auto ml-auto">
+              <Label check style={labelSty} for="exampleName">
+                <Input
+                  type="radio"
+                  name="ejercita"
+                  value="no"
+                  onChange={event => this.inputChange(event)}
+                />
+                No
+              </Label>
+            </FormGroup>
+          </div>
         </div>
 
-        <Button onClick={this.state.sendTeamData}>Submit</Button>
-      </React.Fragment>
+        <Button
+        className='mt-4'
+        //  onClick={this.state.sendTeamData}
+         >Submit</Button>
+      </div>
     );
   }
 }
