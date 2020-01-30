@@ -5,7 +5,7 @@ class HomeComponent extends Component {
     state = {  }
     render() { 
         return ( 
-            <div>
+            <div style={{marginTop: '5em'}}>
             <SurveyComponent></SurveyComponent>
             </div>
          );

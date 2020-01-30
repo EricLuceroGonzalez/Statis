@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import axios from "axios";
+import api from "../api/api";
+import "./formStyle.css";
 import {
   // Container,
   // ButtonGroup,
@@ -91,24 +94,20 @@ class SurveyComponent extends Component {
     }
     return options;
   };
+  sendData = () => {
+    api
+      .postMuestra(this.state)
+      .then(res => {
+        console.log({ mensaje: "Post exitoso", response: res.data });
+      })
+      .catch(err => console.log(`Ha occurrido un error: ${err}`));
+  };
   render() {
     return (
       <div
         className="col-10 mr-auto ml-auto"
         // style={{ fontSize: "0.55em" }}
       >
-        <div className="col-12">
-          <FormGroup className="col-12">
-            <Input
-              onChange={event => this.inputChange(event)}
-              style={inputSty}
-              type="name"
-              name="nombre"
-              placeholder="Nombre"
-            />
-          </FormGroup>
-        </div>
-
         <div className="col-12 mr-auto ml-auto">
           <FormGroup className="col-12">
             <Label style={labelSty} for="exampleName">
@@ -219,54 +218,58 @@ class SurveyComponent extends Component {
             </Input>
           </FormGroup>
         </div>
-        <div className="col-12 mr-auto ml-auto">
-          <FormGroup className="col-12">
-            <Label style={labelSty} for="exampleName">
-              Practica deportes al menos 3 dias a la semana
-            </Label>
-            <Input
-              onChange={event => this.inputChange(event)}
-              type="select"
-              style={inputSty}
-              name="ejercita"
-              id="exampleSelect"
-            >
-              <option>No</option>
-              <option>Si</option>
-            </Input>
-          </FormGroup>
 
-          <div className="row col-6 mr-auto ml-auto">
-            <FormGroup check className="col-4 mr-auto ml-auto">
-              <Label check style={labelSty} for="exampleName">
-                <Input
-                  type="radio"
-                  name="ejercita"
-                  // style={inputSty}
-                  value="si"
-                  onChange={event => this.inputChange(event)}
-                />
-                Si
-              </Label>
-            </FormGroup>
-            <FormGroup check className="col-4 mr-auto ml-auto">
-              <Label check style={labelSty} for="exampleName">
-                <Input
-                  type="radio"
-                  name="ejercita"
-                  value="no"
-                  onChange={event => this.inputChange(event)}
-                />
-                No
-              </Label>
-            </FormGroup>
+        <div className="col-12 mr-auto ml-auto">
+          <Label style={labelSty} for="exampleName">
+            Practica deportes al menos 3 dias a la semana
+          </Label>
+
+          <div className="col-6 mr-auto ml-auto form-check-inline">
+            <label
+              className="container"
+              style={{
+                color: "gray",
+                fontSize: "1.15em",
+                fontWeight: "500",
+                lineHeight: "1",
+                textTransform: "uppercase",
+                letterSpacing: ".2em"
+              }}
+            >
+              Si
+              <input
+                type="radio"
+                value="si"
+                name="ejercita"
+                onChange={event => this.inputChange(event)}
+              ></input>
+              <span className="checkmark"></span>
+            </label>
+            <label
+              className="container"
+              style={{
+                color: "gray",
+                fontSize: "1.15em",
+                fontWeight: "500",
+                lineHeight: "1",
+                textTransform: "uppercase",
+                letterSpacing: ".2em"
+              }}
+            >
+              No
+              <input
+                type="radio"
+                value="no"
+                name="ejercita"
+                onChange={event => this.inputChange(event)}
+              ></input>
+              <span className="checkmark"></span>
+            </label>
           </div>
         </div>
-
-        <Button
-        className='mt-4'
-        //  onClick={this.state.sendTeamData}
-         >Submit</Button>
+        <Button className="mt-4" onClick={this.sendData}>
+          Submit
+        </Button>
       </div>
     );
   }

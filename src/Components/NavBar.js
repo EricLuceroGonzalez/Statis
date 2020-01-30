@@ -17,7 +17,7 @@ class NavBar extends Component {
   render() {
     return (
       <nav
-        className="navbar navbar-expand transparent-nav navbar-static-top"
+        className="navbar navbar-expand transparent-nav fixed-top"
         style={{
           boxShadow: "2px 3px 6px black",
           backgroundColor: "white",
@@ -49,14 +49,6 @@ class NavBar extends Component {
               </li>
             </ul>
           </div>
-          <Link
-            to={"/login"}
-            className="text-title-orange ml-auto"
-            style={{ marginLeft: "20px", fontSize: "1.4em" }}
-          >
-            <div>Login</div>
-          </Link>
-          {/**          <NavBarItem iconName={faMapMarkerAlt}></NavBarItem> */}
         </div>
       </nav>
     );
