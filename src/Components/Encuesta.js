@@ -52,8 +52,6 @@ const labelNameSty = {
 
 class SurveyComponent extends Component {
   state = {
-    nombre: "",
-    apellido: "",
     estatura: "",
     peso: "",
     imc: "",
