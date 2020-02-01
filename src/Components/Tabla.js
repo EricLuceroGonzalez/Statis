@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import api from "../api/api";
-import { Spinner } from "reactstrap";
+// import { Spinner } from "reactstrap";
 
 class SurveyTableComponent extends Component {
   state = {
     allMuestras: []
   };
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     api
       .getMuestras()
       .then(res => {
@@ -15,7 +15,7 @@ class SurveyTableComponent extends Component {
         console.log({ mensaje: "Get all data", response: res.data });
         console.log(this.state);
       })
-      .catch(err => console.log(`Ha occurrido un error: ${err}`));
+      .catch(err => console.log(`GET - ERROR: ${err}`));
   }
 
   renderMuestras = () => {

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import api from "../api/api";
 import "./formStyle.css";
 import {
@@ -33,17 +32,6 @@ const labelSty = {
   margin: "8px 10px 10px 5px",
   color: "gray",
   fontSize: "0.75em",
-  fontWeight: "500",
-  lineHeight: "1",
-  textTransform: "uppercase",
-  letterSpacing: ".2em"
-};
-
-const labelNameSty = {
-  display: "block",
-  margin: "0 0 10px",
-  color: "gray",
-  fontSize: "20px",
   fontWeight: "500",
   lineHeight: "1",
   textTransform: "uppercase",
