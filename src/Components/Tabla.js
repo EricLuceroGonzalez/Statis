@@ -7,7 +7,7 @@ class SurveyTableComponent extends Component {
     allMuestras: []
   };
 
-  UNSAFE_componentWillMount() {
+  componentDidMount() {
     api
       .getMuestras()
       .then(res => {

@@ -5,11 +5,11 @@ const api = axios.create({
   // baseURL: "http://localhost:8000/api",
   // timeout: 10000,
   // transformRequest: [data => JSON.stringify(data.data)],
-  headers: {
-    'Access-Control-Allow-Origin': '*',
-    Accept: "application/json",
-    "Content-Type": "application/json"
-  }
+  // headers: {
+  //   'Access-Control-Allow-Origin': '*',
+  //   Accept: "application/json",
+  //   "Content-Type": "application/json"
+  // }
 });
 
 
