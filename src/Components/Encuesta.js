@@ -198,9 +198,9 @@ class SurveyComponent extends Component {
               name="lateralidad"
               id="exampleSelect"
             >
-              <option>Derecho</option>
-              <option>Izquierdo</option>
-              <option>Ambidiestro</option>
+              <option>Der</option>
+              <option>Izq</option>
+              <option>Ambi</option>
             </Input>
           </FormGroup>
         </div>
