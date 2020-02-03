@@ -8,26 +8,20 @@ class FooterComponent extends Component {
   render() {
     return (
       <div
-        className="container col-12"
+        className="col-12"
         style={{
           //   marginTop: "150px",
           color: "white",
           background:
             "linear-gradient(90deg, rgba(59,86,155,1) 0%, #3b5998 100%)",
           position: "fixed",
-          bottom: "0px"
+          bottom: "0px",
+          fontSize: "0.65em",
+          fontFamily: "Courier New"
         }}
       >
-        <p
-          style={{
-            color: "white",
-            fontSize: "0.35em",
-            fontFamily: "Courier New"
-          }}
-        >
           creado por Eric Lucero G.
-          <span>contacto: ericlucero501@gmail.com</span>
-        </p>
+          <div>contacto: ericlucero501@gmail.com</div>
       </div>
     );
   }

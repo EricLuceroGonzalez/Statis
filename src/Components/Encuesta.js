@@ -92,7 +92,7 @@ class SurveyComponent extends Component {
     return (
       <div
         className="col-10 mr-auto ml-auto"
-        style={{ fontSize: "0.75em", marginTop: '85px' }}
+        style={{ fontSize: "0.75em", marginTop: "85px" }}
       >
         <div className="col-12 mr-auto ml-auto">
           <FormGroup className="col-12">
@@ -106,6 +106,9 @@ class SurveyComponent extends Component {
               name="estatura"
               id="exampleSelect"
             >
+              <option defaultValue="selected">
+                {"Elija la estatura en metros"}
+              </option>
               {this.renderEstatura()}
             </Input>
           </FormGroup>
@@ -123,6 +126,9 @@ class SurveyComponent extends Component {
               name="peso"
               id="exampleSelect"
             >
+              <option defaultValue="selected">
+                {"Elija el peso en libras"}
+              </option>
               {this.renderPeso()}
             </Input>
           </FormGroup>
@@ -157,6 +163,7 @@ class SurveyComponent extends Component {
               name="genero"
               id="exampleSelect"
             >
+              <option defaultValue="selected">{""}</option>
               <option>Femenino</option>
               <option>Masculino</option>
               <option>Otro</option>
@@ -166,7 +173,7 @@ class SurveyComponent extends Component {
 
         <div className="col-12 mr-auto ml-auto">
           <FormGroup className="col-12">
-            <Label style={labelSty}>Genero</Label>
+            <Label style={labelSty}>Grupo Sanguineo</Label>
             <Input
               onChange={event => this.inputChange(event)}
               type="select"
@@ -174,6 +181,7 @@ class SurveyComponent extends Component {
               name="sangre"
               id="exampleSelect"
             >
+              <option defaultValue="selected">{""}</option>
               <option>O-</option>
               <option>O+</option>
               <option>A-</option>
@@ -198,6 +206,7 @@ class SurveyComponent extends Component {
               name="lateralidad"
               id="exampleSelect"
             >
+              <option defaultValue="selected">{""}</option>
               <option>Der</option>
               <option>Izq</option>
               <option>Ambi</option>
@@ -225,7 +234,7 @@ class SurveyComponent extends Component {
               Si
               <input
                 type="radio"
-                value="si"
+                value="SI"
                 name="ejercita"
                 onChange={event => this.inputChange(event)}
               ></input>
@@ -245,7 +254,7 @@ class SurveyComponent extends Component {
               No
               <input
                 type="radio"
-                value="no"
+                value="NO"
                 name="ejercita"
                 onChange={event => this.inputChange(event)}
               ></input>
