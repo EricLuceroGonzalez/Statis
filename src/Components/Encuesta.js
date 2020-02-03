@@ -18,7 +18,7 @@ const inputSty = {
   width: "100%",
   border: "0",
   borderRadius: "4px",
-  padding: "8px 20px",
+  padding: "2px 20px",
   color: "gray",
   fontFamily: "inherit",
   fontSize: "0.65em",
@@ -88,6 +88,18 @@ class SurveyComponent extends Component {
       })
       .catch(err => console.log(`Ha occurrido un error: ${err}`));
   };
+  renderIMC = () => {
+    if (this.state.estatura && this.state.peso !== "") {
+      return <div className="col-12 mr-auto ml-auto">
+      <Label style={labelSty} for="exampleName">
+      Indice de Masa Corporal:
+    </Label>
+<div style={labelSty}>
+IMC = {((this.state.peso * 0.453592)/ this.state.estatura**2 ).toFixed(2)}
+</div>
+      </div>;
+    }
+  };
   render() {
     return (
       <div
@@ -133,7 +145,7 @@ class SurveyComponent extends Component {
             </Input>
           </FormGroup>
         </div>
-
+        {this.renderIMC()}
         <div className="col-12 mr-auto ml-auto">
           <FormGroup className="col-12">
             <Label style={labelSty} for="exampleName">
@@ -218,48 +230,32 @@ class SurveyComponent extends Component {
           <Label style={labelSty} for="exampleName">
             Practica deportes al menos 3 dias a la semana
           </Label>
-
-          <div className="col-6 mr-auto ml-auto form-check-inline">
-            <label
-              className="container"
-              style={{
-                color: "gray",
-                fontSize: "1.15em",
-                fontWeight: "500",
-                lineHeight: "1",
-                textTransform: "uppercase",
-                letterSpacing: ".2em"
-              }}
-            >
-              Si
-              <input
-                type="radio"
-                value="SI"
-                name="ejercita"
-                onChange={event => this.inputChange(event)}
-              ></input>
-              <span className="checkmark"></span>
-            </label>
-            <label
-              className="container"
-              style={{
-                color: "gray",
-                fontSize: "1.15em",
-                fontWeight: "500",
-                lineHeight: "1",
-                textTransform: "uppercase",
-                letterSpacing: ".2em"
-              }}
-            >
-              No
-              <input
-                type="radio"
-                value="NO"
-                name="ejercita"
-                onChange={event => this.inputChange(event)}
-              ></input>
-              <span className="checkmark"></span>
-            </label>
+          <div className="mr-auto ml-auto">
+            <FormGroup check>
+              <Label
+                check
+                style={{
+                  color: "gray",
+                  fontSize: "1.15em",
+                  fontWeight: "500",
+                  lineHeight: "1",
+                  textTransform: "uppercase",
+                  letterSpacing: ".2em"
+                }}
+              >
+                <Input
+                  onChange={event => this.inputChange(event)}
+                  type="select"
+                  style={inputSty}
+                  name="ejercita"
+                  id="exampleSelect"
+                >
+                  <option defaultValue="selected">{""}</option>
+                  <option>Si</option>
+                  <option>No</option>
+                </Input>
+              </Label>
+            </FormGroup>
           </div>
         </div>
         <Button className="mt-4" onClick={this.sendData}>
