@@ -92,7 +92,7 @@ class SurveyComponent extends Component {
     return (
       <div
         className="col-10 mr-auto ml-auto"
-        // style={{ fontSize: "0.55em" }}
+        style={{ fontSize: "0.75em", marginTop: '85px' }}
       >
         <div className="col-12 mr-auto ml-auto">
           <FormGroup className="col-12">

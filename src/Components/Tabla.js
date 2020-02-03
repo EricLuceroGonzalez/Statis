@@ -19,44 +19,41 @@ class SurveyTableComponent extends Component {
   }
 
   renderMuestras = () => {
-      const table = this.state.allMuestras.map((item, i) => {
-        return (
-          <tr key={i}>
-            <th scope="row">{i + 1}</th>
-            <td>{item.edad}</td>
-            <td>{item.estatura}</td>
-            <td>{item.peso}</td>
-            <td>{item.sangre}</td>
-            <td>{item.genero}</td>
-            <td>{item.lateralidad}</td>
-            <td>{item.ejercita}</td>
-            <td>{item.edad}</td>
-          </tr>
-        );
-      });
-      return table;
-    
+    const table = this.state.allMuestras.map((item, i) => {
+      return (
+        <tr key={i}>
+          <th scope="row">{i + 1}</th>
+          <td>{item.edad}</td>
+          <td>{item.estatura}</td>
+          <td>{item.peso}</td>
+          <td>{item.sangre}</td>
+          <td>{item.genero}</td>
+          <td>{item.lateralidad}</td>
+          <td>{item.ejercita}</td>
+          <td>{item.edad}</td>
+        </tr>
+      );
+    });
+    return table;
   };
   render() {
     return (
-      <div>
-        <table style={{ marginTop: "120px" }} className="table table-striped">
+      <div className="table-responsive text-nowrap">
+        <table style={{ marginTop: "120px" }} className="table table-striped w-auto">
           <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Edad</th>
-              <th scope="col">Estatura</th>
-              <th scope="col">Peso</th>
-              <th scope="col">Grupo sanguineo</th>
-              <th scope="col">Genero</th>
-              <th scope="col">Lateralidad</th>
-              <th scope="col">Se ejercita al menos tres veces a la semana</th>
-              <th scope="col">Indice de masa corporal</th>
+            <tr style={{ fontSize: "0.65em" }}>
+              <th >#</th>
+              <th >Edad</th>
+              <th >Estatura</th>
+              <th >Peso</th>
+              <th >Grupo sanguineo</th>
+              <th >Genero</th>
+              <th >Lateralidad</th>
+              <th >Se ejercita al menos tres veces a la semana</th>
+              <th >Indice de masa corporal</th>
             </tr>
           </thead>
-          <tbody>
-            {this.renderMuestras()}
-          </tbody>
+          <tbody style={{ fontSize: "0.65em" }}>{this.renderMuestras()}</tbody>
         </table>
       </div>
     );

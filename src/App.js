@@ -5,6 +5,7 @@ import NavBar from "./Components/NavBar";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import HomeComponent from "./Components/Home";
 import SurveyTableComponent from "./Components/Tabla";
+import FooterComponent from "./Components/Footer";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
         <Route exact path="/" component={HomeComponent} />
         <Route path='/Stats' component={SurveyTableComponent}></Route>
       </Router>
-
+<FooterComponent></FooterComponent>
     </div>
   );
 }
