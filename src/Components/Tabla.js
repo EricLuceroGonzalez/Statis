@@ -56,7 +56,7 @@ class SurveyTableComponent extends Component {
             <td>{item.edad}</td>
             <td>{item.estatura}</td>
             <td>{item.peso}</td>
-            <td>{item.imc}</td>
+            {this.renderIMCs(item.imc)}
             <td>{item.sangre}</td>
             <td>{item.genero}</td>
             <td>{item.lateralidad}</td>
@@ -67,29 +67,50 @@ class SurveyTableComponent extends Component {
       return table;
     }
   };
+
+  //   Peso inferior al normal 	Menos de 18.5
+  // Normal 	18.5 – 24.9
+  // Peso superior al normal 	25.0 – 29.9
+  // Obesidad 	Más de 30.0
+  renderIMCs = item => {
+    return item < 18.5 ? (
+      <td className="imc-min">{item}</td>
+    ) : item < 24.9 ? (
+      <td className="imc-normal">{item}</td>
+    ) : (
+item < 29.9 ?
+<td className="imc-hi">{item}</td> :       <td className="imc-ob">{item}</td>
+    );
+  };
   renderEncuestas = () => {
     if (this.state.allMuestras.length !== 0) {
-      return <div style={{fontFamily: 'Montserrat-ExtraBoldItalic'}}>Numero de encuestas: {this.state.allMuestras.length}</div>;
+      return (
+        <div style={{ fontFamily: "Montserrat-ExtraBoldItalic" }}>
+          Numero de encuestas: {this.state.allMuestras.length}
+        </div>
+      );
     }
   };
 
   render() {
     return (
-      <div className="table-responsive text-nowrap"
-      style={{margin: '90px 15px', fontFamily: 'Poppins-Light'}}>
+      <div
+        className="table-responsive"
+        style={{ margin: "90px 15px", fontFamily: "Poppins-Light" }}
+      >
         {this.renderEncuestas()}
-        <table className="table table-striped w-auto">
+        <table className="table table-striped">
           <thead>
             <tr style={{ fontSize: "0.85em" }}>
               <th>#</th>
               <th>Edad</th>
               <th>Estatura</th>
               <th>Peso</th>
-              <th>Indice de masa corporal</th>
+              <th>IMC</th>
               <th>Grupo sanguineo</th>
               <th>Genero</th>
               <th>Lateralidad</th>
-              <th>Se ejercita al menos tres veces a la semana</th>
+              <th className="col-12">Se ejercita al menos 3 x a la semana</th>
             </tr>
           </thead>
           <tbody style={{ fontSize: "0.65em" }}>{this.renderMuestras()}</tbody>

@@ -33,3 +33,30 @@
   src: url(./styles/montserrat/Montserrat-ExtraBoldItalic.ttf);
   /* src: url('../fonts/poppins/Poppins-Regular.ttf');  */
 }
+
+@font-face {
+  font-family: Montserrat-ExtraBold;
+  src: url(./styles/montserrat/Montserrat-ExtraBold.ttf);
+  /* src: url('../fonts/poppins/Poppins-Regular.ttf');  */
+}
+
+
+.imc-min{
+  color: red;
+  font-family: Montserrat-ExtraBold;
+}
+
+.imc-normal{
+  color: green;
+  font-family: Montserrat-ExtraBold;
+}
+
+.imc-hi{
+  color: orangered;
+  font-family: Montserrat-ExtraBold;
+}
+
+.imc-ob{
+  color: red;
+  font-family: Montserrat-ExtraBold;
+}

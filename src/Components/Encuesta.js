@@ -30,10 +30,9 @@ const inputSty = {
 
 const labelSty = {
   display: "block",
-  margin: "8px 10px 10px 5px",
+  margin: "8px 10px 3px 5px",
   color: "gray",
   fontSize: "0.75em",
-  fontWeight: "500",
   lineHeight: "1",
   textTransform: "uppercase",
   letterSpacing: ".2em"
