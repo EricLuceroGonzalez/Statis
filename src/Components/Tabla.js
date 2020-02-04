@@ -56,11 +56,11 @@ class SurveyTableComponent extends Component {
             <td>{item.edad}</td>
             <td>{item.estatura}</td>
             <td>{item.peso}</td>
+            <td>{item.imc}</td>
             <td>{item.sangre}</td>
             <td>{item.genero}</td>
             <td>{item.lateralidad}</td>
             <td>{item.ejercita}</td>
-            <td>{item.imc}</td>
           </tr>
         );
       });
@@ -69,27 +69,27 @@ class SurveyTableComponent extends Component {
   };
   renderEncuestas = () => {
     if (this.state.allMuestras.length !== 0) {
-      return <div>Numero de encuestas: {this.state.allMuestras.length}</div>;
+      return <div style={{fontFamily: 'Montserrat-ExtraBoldItalic'}}>Numero de encuestas: {this.state.allMuestras.length}</div>;
     }
   };
 
   render() {
     return (
       <div className="table-responsive text-nowrap"
-      style={{margin: '90px 15px'}}>
+      style={{margin: '90px 15px', fontFamily: 'Poppins-Light'}}>
         {this.renderEncuestas()}
         <table className="table table-striped w-auto">
           <thead>
-            <tr style={{ fontSize: "0.65em" }}>
+            <tr style={{ fontSize: "0.85em" }}>
               <th>#</th>
               <th>Edad</th>
               <th>Estatura</th>
               <th>Peso</th>
+              <th>Indice de masa corporal</th>
               <th>Grupo sanguineo</th>
               <th>Genero</th>
               <th>Lateralidad</th>
               <th>Se ejercita al menos tres veces a la semana</th>
-              <th>Indice de masa corporal</th>
             </tr>
           </thead>
           <tbody style={{ fontSize: "0.65em" }}>{this.renderMuestras()}</tbody>

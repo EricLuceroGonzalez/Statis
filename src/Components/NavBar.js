@@ -5,7 +5,7 @@ import { Button } from "reactstrap";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const linksNavs = {
-  margin: "2px 12px"
+  margin: "1px 12px"
 };
 
 class NavBar extends Component {
@@ -20,7 +20,8 @@ class NavBar extends Component {
         style={{
           boxShadow: "2px 3px 6px rgba(1,1,1,0.3)",
           backgroundColor: "white",
-          marginBottom: "3em"
+          marginBottom: "3em",
+          fontFamily: "Poppins-Light"
           // fontSize: '0.8em'
           // rgba(59, 89, 152, 0.95)
           // border: "2px dashed green"
@@ -34,14 +35,26 @@ class NavBar extends Component {
             <ul className="navbar-nav mr-auto">
               <li style={linksNavs}>
                 <Link to={"/"}>
-                  <Button style={{ fontSize: "0.5em", fontWeight: 'bold' }} color="primary">
+                  <Button
+                    style={{
+                      fontSize: "0.5em",
+                      textShadow: "1px 1px 2px black"
+                    }}
+                    color="primary"
+                  >
                     Llenar encuesta
                   </Button>{" "}
                 </Link>
               </li>
               <li style={linksNavs}>
                 <Link to={"/Stats"}>
-                  <Button style={{ fontSize: "0.5em", fontWeight: 'bold' }} color="info">
+                  <Button
+                    style={{
+                      fontSize: "0.5em",
+                      textShadow: "1px 1px 2px black"
+                    }}
+                    color="info"
+                  >
                     Ver tabla
                   </Button>{" "}
                 </Link>

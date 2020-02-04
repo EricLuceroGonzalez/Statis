@@ -124,20 +124,22 @@ class SurveyComponent extends Component {
     return indiceMC;
   };
   renderIMC = () => {
-    return (
-      <div className="col-12 mr-auto ml-auto">
-        <Label style={labelSty} for="exampleName">
-          Indice de Masa Corporal:
-        </Label>
-        <div style={labelSty}>IMC = {this.state.imc}</div>
-      </div>
-    );
+if (this.state.estatura && this.state.peso !== '') {
+  return (
+    <div className="col-12 mr-auto ml-auto">
+      <Label style={labelSty} for="exampleName">
+        Indice de Masa Corporal:
+      </Label>
+      <div style={labelSty}>IMC = {this.state.imc}</div>
+    </div>
+  );
+}
   };
   render() {
     return (
       <div
         className="col-10 mr-auto ml-auto"
-        style={{ fontSize: "0.75em", marginTop: "85px" }}
+        style={{ fontFamily: 'Montserrat-ExtraBoldItalic',fontSize: "0.85em", marginTop: "65px", marginBottom:'35px' }}
       >
         <div className="col-12 mr-auto ml-auto">
           <FormGroup className="col-12">

@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import HomeComponent from "./Components/Home";
 import SurveyTableComponent from "./Components/Tabla";
 import FooterComponent from "./Components/Footer";
+import './App.css'
 
 function App() {
   return (
