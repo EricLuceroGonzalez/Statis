@@ -60,7 +60,7 @@ class SurveyTableComponent extends Component {
             <td>{item.genero}</td>
             <td>{item.lateralidad}</td>
             <td>{item.ejercita}</td>
-            <td>{item.edad}</td>
+            <td>{item.imc}</td>
           </tr>
         );
       });
@@ -76,7 +76,7 @@ class SurveyTableComponent extends Component {
   render() {
     return (
       <div className="table-responsive text-nowrap"
-      style={{marginTop: '90px'}}>
+      style={{margin: '90px 15px'}}>
         {this.renderEncuestas()}
         <table className="table table-striped w-auto">
           <thead>

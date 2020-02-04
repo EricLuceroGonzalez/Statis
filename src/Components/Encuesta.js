@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import api from "../api/api";
+import cogoToast from "cogo-toast";
 import "./formStyle.css";
 import {
   // Container,
@@ -60,6 +61,9 @@ class SurveyComponent extends Component {
     this.setState({ [name]: value });
 
     console.log(this.state);
+    if (this.state.estatura && this.state.peso !== "") {
+      this.calculaIMC(this.state.peso, this.state.estatura);
+    }
   };
 
   renderEstatura = () => {
@@ -85,20 +89,49 @@ class SurveyComponent extends Component {
       .postMuestra(this.state)
       .then(res => {
         console.log({ mensaje: "Post exitoso", response: res.data });
+        const { hide } = cogoToast.success("Gracias por responder!", {
+          onClick: () => {
+            hide();
+            // window.location = "/";
+          }
+        });
+        this.setState({
+          estatura: "",
+          peso: "",
+          edad: "",
+          imc: "",
+          lateralidad: "",
+          ejercita: "",
+          sangre: "",
+          genero: ""
+        });
+        setTimeout((window.location = "/Stats"), 5000);
       })
-      .catch(err => console.log(`Ha occurrido un error: ${err}`));
+      .catch(err => {
+        console.log(`Ha occurrido un error: ${err}`);
+        const { hide } = cogoToast.error("Click to login & comment", {
+          onClick: () => {
+            hide();
+            // window.location = "/";
+          }
+        });
+      });
+  };
+
+  calculaIMC = (peso, estatura) => {
+    let indiceMC = ((peso * 0.453592) / estatura ** 2).toFixed(2);
+    this.setState({ imc: indiceMC });
+    return indiceMC;
   };
   renderIMC = () => {
-    if (this.state.estatura && this.state.peso !== "") {
-      return <div className="col-12 mr-auto ml-auto">
-      <Label style={labelSty} for="exampleName">
-      Indice de Masa Corporal:
-    </Label>
-<div style={labelSty}>
-IMC = {((this.state.peso * 0.453592)/ this.state.estatura**2 ).toFixed(2)}
-</div>
-      </div>;
-    }
+    return (
+      <div className="col-12 mr-auto ml-auto">
+        <Label style={labelSty} for="exampleName">
+          Indice de Masa Corporal:
+        </Label>
+        <div style={labelSty}>IMC = {this.state.imc}</div>
+      </div>
+    );
   };
   render() {
     return (
@@ -259,7 +292,7 @@ IMC = {((this.state.peso * 0.453592)/ this.state.estatura**2 ).toFixed(2)}
           </div>
         </div>
         <Button className="mt-4" onClick={this.sendData}>
-          Submit
+          Enviar
         </Button>
       </div>
     );
