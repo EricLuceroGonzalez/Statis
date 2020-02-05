@@ -129,7 +129,7 @@ class SurveyComponent extends Component {
     return indiceMC;
   };
   renderIMC = () => {
-if (this.state.estatura && this.state.peso !== '') {
+if (this.state.estatura && this.state.peso && this.state.edad !== '') {
   return (
     <div className="col-12 mr-auto ml-auto">
       <Label style={labelSty} for="exampleName">
@@ -143,8 +143,9 @@ if (this.state.estatura && this.state.peso !== '') {
   render() {
     return (
       <div
-        className="col-10 mr-auto ml-auto"
-        style={{ fontFamily: 'Montserrat-ExtraBoldItalic',fontSize: "0.85em", marginTop: "15px", marginBottom:'35px' }}
+        className="col-12 mr-auto ml-auto"
+        style={{ fontFamily: 'Montserrat-ExtraBoldItalic',fontSize: "0.85em", marginTop: "15px", marginBottom:'35px'
+         }}
       >
         <div className="col-12 mr-auto ml-auto">
           <FormGroup className="col-12">
@@ -252,7 +253,7 @@ if (this.state.estatura && this.state.peso !== '') {
           <FormGroup className="col-12">
             <Label style={labelSty} for="exampleName">
               Lateralidad
-              <div className='subbt'>(izquierdo, derecho, etc)</div>
+              <div className='subbt'>(izquierda, derecha, ambidiestra)</div>
             </Label>
             <Input
               onChange={event => this.inputChange(event)}
@@ -271,7 +272,8 @@ if (this.state.estatura && this.state.peso !== '') {
 
         <div className="col-12 mr-auto ml-auto">
           <Label style={labelSty} for="exampleName">
-            Practica deportes al menos 3 dias a la semana
+            Practica deportes 
+            <div className='subbt'>al menos 3 dias a la semana</div>
           </Label>
           <div className="mr-auto ml-auto">
             <FormGroup check>
