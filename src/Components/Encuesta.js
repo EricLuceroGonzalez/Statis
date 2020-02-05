@@ -89,14 +89,35 @@ class SurveyComponent extends Component {
       .then(res => {
         // console.log({ mensaje: "Post exitoso", response: res.data });
 
-        const { hide } = cogoToast.success("Gracias por responder!", {
-          position: 'bottom-right', 
-          heading: 'Gracias!' ,
-          onClick: () => {
-            hide();
-            // window.location = "/";
+        const { hide } = cogoToast.success(
+          <div style={{ color: "rgba(63,10,88,1)" }}>
+            <b>Gracias!</b>
+            <div
+              style={{
+                fontFamily: "Montserrat-ExtraBold"
+              }}
+            >
+              Tu indice de masa corporal es:
+            </div>
+            <div
+              style={{
+                fontFamily: "Montserrat-ExtraBoldItalic",
+                color: "rgba(71,15,244,1)",
+                fontSize: "1.5em"
+              }}
+            >
+              {this.state.imc}
+            </div>
+          </div>,
+          {
+            position: "bottom-right",
+            heading: "Gracias!",
+            onClick: () => {
+              hide();
+              // window.location = "/";
+            }
           }
-        });
+        );
         this.setState({
           estatura: "",
           peso: "",
@@ -110,16 +131,21 @@ class SurveyComponent extends Component {
         // this.props.history.push('https://statistik-a.herokuapp.com/api/Stats')
         // window.location = "/Stats";
       })
-      .catch(err => {       
-        const { hide } = cogoToast.error('Faltan campos por llenar!', {
-          position: 'bottom-right', 
-          heading: 'Atencion!' ,
-          hideAfter: 3,
-          onClick: () => {
-            hide();
-            // window.location = "/";
+      .catch(err => {
+        const { hide } = cogoToast.error(
+          <div style={{ color: "rgba(63,10,88,1)" }}>
+            <b>Espera!</b>
+            <div>Hacen falta campos por llenar</div>
+          </div>,
+          {
+            position: "bottom-right",
+            hideAfter: 3,
+            onClick: () => {
+              hide();
+              // window.location = "/";
+            }
           }
-        });
+        );
       });
   };
 
@@ -129,29 +155,33 @@ class SurveyComponent extends Component {
     return indiceMC;
   };
   renderIMC = () => {
-if (this.state.estatura && this.state.peso && this.state.edad !== '') {
-  return (
-    <div className="col-12 mr-auto ml-auto">
-      <Label style={labelSty} for="exampleName">
-        Indice de Masa Corporal:
-      </Label>
-      <div style={labelSty}>IMC = {this.state.imc}</div>
-    </div>
-  );
-}
+    if (this.state.estatura && this.state.peso && this.state.edad !== "") {
+      return (
+        <div className="col-12 mr-auto ml-auto">
+          <Label style={labelSty} for="exampleName">
+            Indice de Masa Corporal:
+          </Label>
+          <div style={labelSty}>IMC = {this.state.imc}</div>
+        </div>
+      );
+    }
   };
   render() {
     return (
       <div
         className="col-12 mr-auto ml-auto"
-        style={{ fontFamily: 'Montserrat-ExtraBoldItalic',fontSize: "0.85em", marginTop: "15px", marginBottom:'35px'
-         }}
+        style={{
+          fontFamily: "Montserrat-ExtraBoldItalic",
+          fontSize: "0.85em",
+          marginTop: "15px",
+          marginBottom: "35px"
+        }}
       >
         <div className="col-12 mr-auto ml-auto">
           <FormGroup className="col-12">
             <Label style={labelSty} for="exampleName">
               Estatura
-              <div className='subbt'>(en metros)</div>
+              <div className="subbt">(en metros)</div>
             </Label>
             <Input
               onChange={event => this.inputChange(event)}
@@ -171,8 +201,8 @@ if (this.state.estatura && this.state.peso && this.state.edad !== '') {
         <div className="col-12 mr-auto ml-auto">
           <FormGroup className="col-12">
             <Label style={labelSty} for="exampleName">
-              Peso 
-              <div className='subbt'>(en libras)</div>
+              Peso
+              <div className="subbt">(en libras)</div>
             </Label>
             <Input
               onChange={event => this.inputChange(event)}
@@ -253,7 +283,7 @@ if (this.state.estatura && this.state.peso && this.state.edad !== '') {
           <FormGroup className="col-12">
             <Label style={labelSty} for="exampleName">
               Lateralidad
-              <div className='subbt'>(izquierda, derecha, ambidiestra)</div>
+              <div className="subbt">(izquierda, derecha, ambidiestra)</div>
             </Label>
             <Input
               onChange={event => this.inputChange(event)}
@@ -272,8 +302,8 @@ if (this.state.estatura && this.state.peso && this.state.edad !== '') {
 
         <div className="col-12 mr-auto ml-auto">
           <Label style={labelSty} for="exampleName">
-            Practica deportes 
-            <div className='subbt'>al menos 3 dias a la semana</div>
+            Practica deportes
+            <div className="subbt">al menos 3 dias a la semana</div>
           </Label>
           <div className="mr-auto ml-auto">
             <FormGroup check>
@@ -303,8 +333,11 @@ if (this.state.estatura && this.state.peso && this.state.edad !== '') {
             </FormGroup>
           </div>
         </div>
-        <Button className="mt-4" onClick={this.sendData}
-        style={{backgroundColor:'rgba(71,15,244,1)'}}>
+        <Button
+          className="mt-4"
+          onClick={this.sendData}
+          style={{ backgroundColor: "rgba(71,15,244,1)" }}
+        >
           Enviar
         </Button>
       </div>
