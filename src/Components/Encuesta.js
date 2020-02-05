@@ -89,6 +89,8 @@ class SurveyComponent extends Component {
       .then(res => {
         console.log({ mensaje: "Post exitoso", response: res.data });
         const { hide } = cogoToast.success("Gracias por responder!", {
+          position: 'bottom-right', 
+          heading: 'Gracias!' ,
           onClick: () => {
             hide();
             // window.location = "/";
@@ -104,7 +106,7 @@ class SurveyComponent extends Component {
           sangre: "",
           genero: ""
         });
-        window.location = "/Stats";
+        // window.location = "/Stats";
       })
       .catch(err => {
         console.log(`Ha occurrido un error: ${err}`);        
