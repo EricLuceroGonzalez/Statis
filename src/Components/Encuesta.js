@@ -87,7 +87,8 @@ class SurveyComponent extends Component {
     api
       .postMuestra(this.state)
       .then(res => {
-        console.log({ mensaje: "Post exitoso", response: res.data });
+        // console.log({ mensaje: "Post exitoso", response: res.data });
+
         const { hide } = cogoToast.success("Gracias por responder!", {
           position: 'bottom-right', 
           heading: 'Gracias!' ,
@@ -106,11 +107,10 @@ class SurveyComponent extends Component {
           sangre: "",
           genero: ""
         });
-        this.props.history.push('/Stats')
+        // this.props.history.push('https://statistik-a.herokuapp.com/api/Stats')
         // window.location = "/Stats";
       })
-      .catch(err => {
-        console.log(`Ha occurrido un error: ${err}`);        
+      .catch(err => {       
         const { hide } = cogoToast.error('Faltan campos por llenar!', {
           position: 'bottom-right', 
           heading: 'Atencion!' ,
