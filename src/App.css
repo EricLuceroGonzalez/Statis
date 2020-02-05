@@ -40,6 +40,12 @@
   /* src: url('../fonts/poppins/Poppins-Regular.ttf');  */
 }
 
+@font-face {
+  font-family: Montserrat-Light;
+  src: url(./styles/montserrat/Montserrat-Light.ttf);
+  /* src: url('../fonts/poppins/Poppins-Regular.ttf');  */
+}
+
 
 .imc-min{
   color: red;
@@ -59,4 +65,18 @@
 .imc-ob{
   color: red;
   font-family: Montserrat-ExtraBold;
+}
+
+.foot{
+  color: white;
+  font-family: Montserrat-ExtraBold;
+}
+
+.subbt{
+  font-family: Poppins-Light;
+  font-size: 0.80em;
+}
+
+.truki {
+  background-color: red;
 }

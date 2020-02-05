@@ -20,8 +20,8 @@ class NavBar extends Component {
         style={{
           boxShadow: "2px 3px 6px rgba(1,1,1,0.3)",
           backgroundColor: "white",
-          marginBottom: "3em",
-          fontFamily: "Poppins-Light"
+          marginBottom: "1em",
+          fontFamily: "Montserrat-ExtraBold"
           // fontSize: '0.8em'
           // rgba(59, 89, 152, 0.95)
           // border: "2px dashed green"
@@ -38,7 +38,8 @@ class NavBar extends Component {
                   <Button
                     style={{
                       fontSize: "0.5em",
-                      textShadow: "1px 1px 2px black"
+                      textShadow: "1px 1px 2px black",
+                      backgroundColor: 'rgba(155,74,177,0.75)'
                     }}
                     color="primary"
                   >
@@ -51,7 +52,8 @@ class NavBar extends Component {
                   <Button
                     style={{
                       fontSize: "0.5em",
-                      textShadow: "1px 1px 2px black"
+                      textShadow: "1px 1px 2px black",
+                      backgroundColor: 'rgba(155,74,177,1)'
                     }}
                     color="info"
                   >

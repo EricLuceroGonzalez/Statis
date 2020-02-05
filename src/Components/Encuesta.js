@@ -104,11 +104,14 @@ class SurveyComponent extends Component {
           sangre: "",
           genero: ""
         });
-        setTimeout((window.location = "/Stats"), 5000);
+        window.location = "/Stats";
       })
       .catch(err => {
-        console.log(`Ha occurrido un error: ${err}`);
-        const { hide } = cogoToast.error("Click to login & comment", {
+        console.log(`Ha occurrido un error: ${err}`);        
+        const { hide } = cogoToast.error('Faltan campos por llenar!', {
+          position: 'bottom-right', 
+          heading: 'Atencion!' ,
+          hideAfter: 3,
           onClick: () => {
             hide();
             // window.location = "/";
@@ -118,7 +121,7 @@ class SurveyComponent extends Component {
   };
 
   calculaIMC = (peso, estatura) => {
-    let indiceMC = ((peso * 0.453592) / estatura ** 2).toFixed(2);
+    let indiceMC = ((peso * 0.453592) / estatura ** 2);
     this.setState({ imc: indiceMC });
     return indiceMC;
   };
@@ -138,12 +141,13 @@ if (this.state.estatura && this.state.peso !== '') {
     return (
       <div
         className="col-10 mr-auto ml-auto"
-        style={{ fontFamily: 'Montserrat-ExtraBoldItalic',fontSize: "0.85em", marginTop: "65px", marginBottom:'35px' }}
+        style={{ fontFamily: 'Montserrat-ExtraBoldItalic',fontSize: "0.85em", marginTop: "15px", marginBottom:'35px' }}
       >
         <div className="col-12 mr-auto ml-auto">
           <FormGroup className="col-12">
             <Label style={labelSty} for="exampleName">
-              Estatura (en metros)
+              Estatura
+              <div className='subbt'>(en metros)</div>
             </Label>
             <Input
               onChange={event => this.inputChange(event)}
@@ -163,7 +167,8 @@ if (this.state.estatura && this.state.peso !== '') {
         <div className="col-12 mr-auto ml-auto">
           <FormGroup className="col-12">
             <Label style={labelSty} for="exampleName">
-              Peso (en libras)
+              Peso 
+              <div className='subbt'>(en libras)</div>
             </Label>
             <Input
               onChange={event => this.inputChange(event)}
@@ -244,6 +249,7 @@ if (this.state.estatura && this.state.peso !== '') {
           <FormGroup className="col-12">
             <Label style={labelSty} for="exampleName">
               Lateralidad
+              <div className='subbt'>(izquierdo, derecho, etc)</div>
             </Label>
             <Input
               onChange={event => this.inputChange(event)}
@@ -292,7 +298,8 @@ if (this.state.estatura && this.state.peso !== '') {
             </FormGroup>
           </div>
         </div>
-        <Button className="mt-4" onClick={this.sendData}>
+        <Button className="mt-4" onClick={this.sendData}
+        style={{backgroundColor:'rgba(71,15,244,1)'}}>
           Enviar
         </Button>
       </div>

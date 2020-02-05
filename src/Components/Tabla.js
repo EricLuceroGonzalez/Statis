@@ -46,6 +46,9 @@ class SurveyTableComponent extends Component {
           <td>
             <Spinner className="mr-auto ml-auto" type="grow" color="primary" />
           </td>
+          <td>
+            <Spinner className="mr-auto ml-auto" type="grow" color="primary" />
+          </td>
         </tr>
       );
     } else {
@@ -77,16 +80,18 @@ class SurveyTableComponent extends Component {
       <td className="imc-min">{item}</td>
     ) : item < 24.9 ? (
       <td className="imc-normal">{item}</td>
+    ) : item < 29.9 ? (
+      <td className="imc-hi">{item}</td>
     ) : (
-item < 29.9 ?
-<td className="imc-hi">{item}</td> :       <td className="imc-ob">{item}</td>
+      <td className="imc-ob">{item}</td>
     );
   };
   renderEncuestas = () => {
     if (this.state.allMuestras.length !== 0) {
       return (
-        <div style={{ fontFamily: "Montserrat-ExtraBoldItalic" }}>
-          Numero de encuestas: {this.state.allMuestras.length}
+        <div style={{ fontFamily: "Montserrat-ExtraBoldItalic", color: 'rgba(71,15,244,1)' }}>
+          <div style={{fontFamily:'Montserrat-Light'}}>Numero de encuestas: </div>
+          <div style={{fontSize: '2em'}}>{this.state.allMuestras.length}</div>
         </div>
       );
     }
@@ -110,7 +115,7 @@ item < 29.9 ?
               <th>Grupo sanguineo</th>
               <th>Genero</th>
               <th>Lateralidad</th>
-              <th className="col-12">Se ejercita al menos 3 x a la semana</th>
+              <th>Se ejercita al menos 3 x a la semana</th>
             </tr>
           </thead>
           <tbody style={{ fontSize: "0.65em" }}>{this.renderMuestras()}</tbody>

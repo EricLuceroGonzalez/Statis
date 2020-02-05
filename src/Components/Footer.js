@@ -12,19 +12,25 @@ class FooterComponent extends Component {
         style={{
           //   marginTop: "150px",
           color: "white",
-          background:
-            "linear-gradient(90deg, rgba(59,86,155,1) 0%, #3b5998 100%)",
+          background:"rgba(63,10,88,1)",
           position: "fixed",
           bottom: "0px",
-          fontSize: "0.65em",
-          fontFamily: "Courier New"
+          fontSize: "0.5em",
+          fontFamily: "Montserrat-Light "
         }}
       >
-          creado por Eric Lucero G.
-          <div>contacto: ericlucero501@gmail.com</div>
+        creado para fines academicos
+          por <span className="foot">Eric Lucero G.</span>
+        <div>contacto: ericlucero501@gmail.com</div>
       </div>
     );
   }
 }
 
 export default FooterComponent;
+
+// 
+// #8f3985
+// #b6a39e
+// #efd9ce
+// #470ff4
