@@ -121,7 +121,7 @@ class SurveyComponent extends Component {
   };
 
   calculaIMC = (peso, estatura) => {
-    let indiceMC = ((peso * 0.453592) / estatura ** 2);
+    let indiceMC = ((peso * 0.453592) / estatura ** 2).toFixed(2);
     this.setState({ imc: indiceMC });
     return indiceMC;
   };
