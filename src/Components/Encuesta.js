@@ -106,6 +106,7 @@ class SurveyComponent extends Component {
           sangre: "",
           genero: ""
         });
+        this.props.history.push('/Stats')
         // window.location = "/Stats";
       })
       .catch(err => {
