@@ -40,6 +40,7 @@ const labelSty = {
 
 class SurveyComponent extends Component {
   state = {
+    activeThumb: false,
     estatura: "",
     peso: "",
     imc: "",
@@ -84,11 +85,13 @@ class SurveyComponent extends Component {
     return options;
   };
   sendData = () => {
+    this.setState({
+      activeThumb: !this.state.activeThumb
+    });
     api
       .postMuestra(this.state)
       .then(res => {
         // console.log({ mensaje: "Post exitoso", response: res.data });
-
         const { hide } = cogoToast.success(
           <div style={{ color: "rgba(63,10,88,1)" }}>
             <b>Gracias!</b>
@@ -334,9 +337,9 @@ class SurveyComponent extends Component {
           </div>
         </div>
         <Button
-          className="mt-4"
+          style={{ marginTop: "1.5em", backgroundColor: "rgba(71,15,244,1)" }}
+          className={this.state.activeThumb ? "jello-horizontal" : "none"}
           onClick={this.sendData}
-          style={{ backgroundColor: "rgba(71,15,244,1)" }}
         >
           Enviar
         </Button>

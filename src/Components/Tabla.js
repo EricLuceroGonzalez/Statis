@@ -1,9 +1,18 @@
 import React, { Component } from "react";
 import api from "../api/api";
+import axios from "axios";
 import { Spinner } from "reactstrap";
+import BarChart from "./Charts";
+import ChardData from "./ChartData";
+import PieChart from "./PieChart";
 
 class SurveyTableComponent extends Component {
   state = {
+    estatura: [],
+    peso: [],
+    edad: [],
+    data: [],
+    labels: [],
     allMuestras: []
   };
 
@@ -11,12 +20,86 @@ class SurveyTableComponent extends Component {
     api
       .getMuestras()
       .then(res => {
+        // console.log({ mensaje: "Get all data", response: res.data });
         this.setState({ allMuestras: res.data });
-        console.log({ mensaje: "Get all data", response: res.data });
-        console.log(this.state);
       })
       .catch(err => console.log(`GET - ERROR: ${err}`));
   }
+
+  //   componentDidUpdate(){
+  //   axios
+  //     .get("http://localhost:8000/api/chartData")
+  //     .then(theData => {
+  //       this.setState({
+  //         edad: theData.data.edad,
+  //         estatura: theData.data.estatura,
+  //         peso: theData.data.peso
+  //       });
+  //     })
+  //     .catch(err => console.log(err));
+  // }
+
+  renderBar() {
+    console.warn("Inside renderBar");
+
+    let edades = this.state.allMuestras.map(item => item.edad);
+    let generos = this.state.allMuestras.map(item => item.genero);
+    // console.log(this.state.edad);
+
+    let edadData = this.mapFrequency(edades);
+    let generoData = this.mapFrequency(generos);
+
+    if (
+      edadData.dataValue === [] ||
+      (edadData.dataValue === "" && generoData.dataValue === []) ||
+      generoData.dataValue === ""
+    ) {
+      return (
+        <Spinner className="mr-auto ml-auto" type="grow" color="primary" />
+      );
+    } else {
+      console.log("--------------------------");
+      console.log(edadData.dataValue);
+      console.log(edadData.dataLabel);
+      return (
+        // <BarChart
+        //   data={edadData.dataValue}
+        //   labels={edadData.dataLabel}
+        //   // data={[20, 10, 21, 22, 13, 23, 18, 1]}
+        //   // labels={["20", "21", "19", "26", "22", "17", "18", "23"]}
+        //   title={"The Plot from function"}
+        //   color="blue"
+        // />
+        <PieChart
+        data={generoData.dataValue}
+        labels={generoData.dataLabel}
+        // data={[20, 10, 21, 22, 13, 23, 18, 1]}
+        // labels={["20", "21", "19", "26", "22", "17", "18", "23"]}
+        title={"The Plot from function"}
+        // color="blue"
+      />
+      );
+    }
+  }
+
+  mapFrequency = someArray => {
+    let dataLabel = [];
+    let dataValue = [];
+    let acc = someArray.reduce(
+      (acc, val) => acc.set(val, 1 + (acc.get(val) || 0)),
+      new Map()
+    );
+
+    for (var clave of acc.keys()) {
+      dataLabel.push(`${clave}`);
+    }
+
+    for (var val of acc.values()) {
+      dataValue.push(val);
+    }
+
+    return { dataLabel, dataValue };
+  };
 
   renderMuestras = () => {
     if (this.state.allMuestras.length === 0) {
@@ -52,6 +135,23 @@ class SurveyTableComponent extends Component {
         </tr>
       );
     } else {
+      // -----------------------
+      // let arr = [5, 5, 5, 2, 2, 2, 2, 2, 9, 4];
+      // console.log(this.mapFrequency(arr));
+
+      // let culo = this.state.allMuestras.map(item => item.edad);
+      // let acd = this.mapFrequency(culo);
+      // console.log(acd);
+      // console.log("******");
+
+      // for (var clave of acd.keys()) {
+      //   console.log(clave);
+      // }
+
+      // for (var clave of acd.values()) {
+      //   console.log(`val: ${clave}`);
+      // }
+
       const table = this.state.allMuestras.map((item, i) => {
         return (
           <tr key={i}>
@@ -89,11 +189,33 @@ class SurveyTableComponent extends Component {
   renderEncuestas = () => {
     if (this.state.allMuestras.length !== 0) {
       return (
-        <div style={{ fontFamily: "Montserrat-ExtraBoldItalic", color: 'rgba(71,15,244,1)' }}>
-          <div style={{fontFamily:'Montserrat-Light'}}>Numero de encuestas: </div>
-          <div style={{fontSize: '2em'}}>{this.state.allMuestras.length}</div>
+        <div
+          style={{
+            fontFamily: "Montserrat-ExtraBoldItalic",
+            color: "rgba(71,15,244,1)"
+          }}
+        >
+          <div style={{ fontFamily: "Montserrat-Light" }}>
+            Numero de encuestas:{" "}
+          </div>
+          <div style={{ fontSize: "2.5em" }}>
+            {this.state.allMuestras.length}
+          </div>
         </div>
       );
+    }
+  };
+  renderBarChart = () => {
+    if (this.state.labels === undefined) {
+      return <div>Fuck</div>;
+    } else {
+      const abla = this.state.data.map((item, i) => {
+        console.log(item);
+        return item;
+      });
+      console.log(abla);
+
+      return <BarChart data={abla}></BarChart>;
     }
   };
 
@@ -103,7 +225,12 @@ class SurveyTableComponent extends Component {
         className="table-responsive"
         style={{ margin: "90px 15px", fontFamily: "Poppins-Light" }}
       >
+        {/*       <ChardData></ChardData>
+                  {this.renderBarChart()}
+
+        */}
         {this.renderEncuestas()}
+        <div>{console.log(this.state.data)}</div>
         <table className="table table-striped">
           <thead>
             <tr style={{ fontSize: "0.85em" }}>
@@ -120,6 +247,17 @@ class SurveyTableComponent extends Component {
           </thead>
           <tbody style={{ fontSize: "0.65em" }}>{this.renderMuestras()}</tbody>
         </table>
+        <ChardData></ChardData>
+        <div>
+          <h5>Graficas</h5>
+          <BarChart
+            data={[40, 10, 21, 2, 3, 3, 2, 1]}
+            labels={["20", "21", "19", "26", "22", "17", "18", "23"]}
+            title={"The Plot"}
+            color="red"
+          />
+          {this.renderBar()}
+        </div>
       </div>
     );
   }
