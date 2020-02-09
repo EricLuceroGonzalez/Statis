@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import Chart from "chart.js";
 
-const pieStyle ={
-  backgroundColor: 'rgba(230,230,230,0.25)',
-  boxShadow: '3px 5px 5px gray',
-  padding: '10px 7px'
-}
+const pieStyle = {
+  backgroundColor: "rgba(230,230,230,0.25)",
+  boxShadow: "3px 5px 5px gray",
+  padding: "10px 7px"
+};
 class PieChart extends Component {
   constructor(props) {
     super(props);
@@ -36,10 +36,9 @@ class PieChart extends Component {
   }
   render() {
     return (
-      <div className="pr-4 pl-4 mr-auto ml-auto mt-2 mb-2"
-      style={pieStyle}>
-        <canvas ref={this.canvasRef} width="250" height="250"></canvas>
-      </div>
+        <div className="pr-4 pl-4 mr-auto ml-auto mt-2 mb-2" style={pieStyle}>
+          <canvas ref={this.canvasRef} width="250" height="250"></canvas>
+        </div>
     );
   }
 }

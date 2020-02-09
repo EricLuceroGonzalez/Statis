@@ -26,20 +26,7 @@ class SurveyTableComponent extends Component {
       .catch(err => console.log(`GET - ERROR: ${err}`));
   }
 
-  //   componentDidUpdate(){
-  //   axios
-  //     .get("http://localhost:8000/api/chartData")
-  //     .then(theData => {
-  //       this.setState({
-  //         edad: theData.data.edad,
-  //         estatura: theData.data.estatura,
-  //         peso: theData.data.peso
-  //       });
-  //     })
-  //     .catch(err => console.log(err));
-  // }
-
-  renderPie(theData) {
+  renderPie = theData => {
     console.warn("Inside renderPie");
 
     // let edades = this.state.allMuestras.map(item => item.edad);
@@ -72,7 +59,7 @@ class SurveyTableComponent extends Component {
         />
       );
     }
-  }
+  };
 
   renderBar(theData) {
     console.warn("Inside renderPie");
@@ -166,23 +153,6 @@ class SurveyTableComponent extends Component {
         </tr>
       );
     } else {
-      // -----------------------
-      // let arr = [5, 5, 5, 2, 2, 2, 2, 2, 9, 4];
-      // console.log(this.mapFrequency(arr));
-
-      // let culo = this.state.allMuestras.map(item => item.edad);
-      // let acd = this.mapFrequency(culo);
-      // console.log(acd);
-      // console.log("******");
-
-      // for (var clave of acd.keys()) {
-      //   console.log(clave);
-      // }
-
-      // for (var clave of acd.values()) {
-      //   console.log(`val: ${clave}`);
-      // }
-
       const table = this.state.allMuestras.map((item, i) => {
         return (
           <tr key={i}>
@@ -234,19 +204,6 @@ class SurveyTableComponent extends Component {
           </div>
         </div>
       );
-    }
-  };
-  renderBarChart = () => {
-    if (this.state.labels === undefined) {
-      return <div>Fuck</div>;
-    } else {
-      const abla = this.state.data.map((item, i) => {
-        console.log(item);
-        return item;
-      });
-      console.log(abla);
-
-      return <BarChart data={abla}></BarChart>;
     }
   };
 

@@ -45,9 +45,9 @@ class BarChart extends Component {
 
   render() {
     return (
-      <div className="pr-4 pl-4 mr-auto ml-auto mt-2 mb-2">
-<canvas ref={this.canvasRef}  height="250"></canvas>
-</div>
+      <div className="col-12 pr-4 pl-4 mr-auto ml-auto mt-2 mb-2">
+        <canvas ref={this.canvasRef} height="250"></canvas>
+      </div>
     );
   }
 }

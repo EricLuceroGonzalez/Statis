@@ -48,7 +48,7 @@
 
 
 .imc-min{
-  color: red;
+  color: rgb(0, 138, 230);
   font-family: Montserrat-ExtraBold;
 }
 
@@ -58,7 +58,7 @@
 }
 
 .imc-hi{
-  color: orangered;
+  color: rgb(255, 204, 0);
   font-family: Montserrat-ExtraBold;
 }
 
