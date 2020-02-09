@@ -24,7 +24,7 @@ class BarChart extends Component {
             {
               ticks: {
                 min: 0,
-                max: 55
+                max: this.props.data.max
               }
             }
           ]
@@ -45,11 +45,9 @@ class BarChart extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <div className="col-10 mr-auto ml-auto">
-          <canvas ref={this.canvasRef} />
-        </div>
-      </React.Fragment>
+      <div className="pr-4 pl-4 mr-auto ml-auto mt-2 mb-2">
+<canvas ref={this.canvasRef}  height="250"></canvas>
+</div>
     );
   }
 }

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Chart from "chart.js";
+import PieChart from "./PieChart";
 
 class ChardData extends Component {
   state = {

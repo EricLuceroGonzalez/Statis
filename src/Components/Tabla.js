@@ -39,45 +39,76 @@ class SurveyTableComponent extends Component {
   //     .catch(err => console.log(err));
   // }
 
-  renderBar() {
-    console.warn("Inside renderBar");
+  renderPie(theData) {
+    console.warn("Inside renderPie");
 
-    let edades = this.state.allMuestras.map(item => item.edad);
-    let generos = this.state.allMuestras.map(item => item.genero);
-    // console.log(this.state.edad);
+    // let edades = this.state.allMuestras.map(item => item.edad);
+    let frequencyData = this.state.allMuestras.map(item => item[theData]);
 
-    let edadData = this.mapFrequency(edades);
-    let generoData = this.mapFrequency(generos);
+    // let edadData = this.mapFrequency(edades);
+    let plotData = this.mapFrequency(frequencyData);
 
-    if (
-      edadData.dataValue === [] ||
-      (edadData.dataValue === "" && generoData.dataValue === []) ||
-      generoData.dataValue === ""
-    ) {
+    if (plotData.dataValue === [] || plotData.dataValue === "") {
       return (
         <Spinner className="mr-auto ml-auto" type="grow" color="primary" />
       );
     } else {
       console.log("--------------------------");
-      console.log(edadData.dataValue);
-      console.log(edadData.dataLabel);
+      console.log(plotData.dataValue);
+      console.log(plotData.dataLabel);
       return (
-        // <BarChart
-        //   data={edadData.dataValue}
-        //   labels={edadData.dataLabel}
-        //   // data={[20, 10, 21, 22, 13, 23, 18, 1]}
-        //   // labels={["20", "21", "19", "26", "22", "17", "18", "23"]}
-        //   title={"The Plot from function"}
-        //   color="blue"
-        // />
         <PieChart
-        data={generoData.dataValue}
-        labels={generoData.dataLabel}
-        // data={[20, 10, 21, 22, 13, 23, 18, 1]}
-        // labels={["20", "21", "19", "26", "22", "17", "18", "23"]}
-        title={"The Plot from function"}
-        // color="blue"
-      />
+          data={plotData.dataValue}
+          labels={plotData.dataLabel}
+          title={"The Plot from function"}
+          color={[
+            "rgba(25, 255, 132, 0.75)",
+            "rgba(12, 119, 252, 0.75)",
+            "rgba(154, 62, 245, 0.75)",
+            "rgba(255, 206, 86, 0.75)",
+            "rgba(245, 12, 222, 0.75)",
+            "rgba(255, 12, 192, 0.75)"
+          ]}
+        />
+      );
+    }
+  }
+
+  renderBar(theData) {
+    console.warn("Inside renderPie");
+
+    // let edades = this.state.allMuestras.map(item => item.edad);
+    let frequencyData = this.state.allMuestras.map(item => item[theData]);
+
+    // let edadData = this.mapFrequency(edades);
+    let plotData = this.mapFrequency(frequencyData);
+
+    if (plotData.dataValue === [] || plotData.dataValue === "") {
+      return (
+        <Spinner className="mr-auto ml-auto" type="grow" color="primary" />
+      );
+    } else {
+      console.log("--------------------------");
+      console.log(plotData.dataValue);
+      console.log(plotData.dataLabel);
+      return (
+        <BarChart
+          data={plotData.dataValue}
+          labels={plotData.dataLabel}
+          title={"Edad de los participantes"}
+          color={[
+            "rgba(255, 99, 132, 0.75)",
+            "rgba(25, 255, 132, 0.75)",
+            "rgba(24, 132, 245, 0.75)",
+            "rgba(255, 206, 86, 0.75)",
+            "rgba(75, 192, 192, 0.75)",
+            "rgba(55, 226, 86, 0.75)",
+            "rgba(75, 192, 192, 0.75)",
+            "rgba(255, 26, 186, 0.75)",
+            "rgba(75, 192, 192, 0.75)",
+            "rgba(255, 12, 192, 0.75)"
+          ]}
+        />
       );
     }
   }
@@ -221,44 +252,46 @@ class SurveyTableComponent extends Component {
 
   render() {
     return (
-      <div
-        className="table-responsive"
-        style={{ margin: "90px 15px", fontFamily: "Poppins-Light" }}
-      >
-        {/*       <ChardData></ChardData>
+      <React.Fragment>
+        <div
+          className="table-responsive"
+          style={{ margin: "90px 15px", fontFamily: "Poppins-Light" }}
+        >
+          {/*       <ChardData></ChardData>
                   {this.renderBarChart()}
 
         */}
-        {this.renderEncuestas()}
-        <div>{console.log(this.state.data)}</div>
-        <table className="table table-striped">
-          <thead>
-            <tr style={{ fontSize: "0.85em" }}>
-              <th>#</th>
-              <th>Edad</th>
-              <th>Estatura</th>
-              <th>Peso</th>
-              <th>IMC</th>
-              <th>Grupo sanguineo</th>
-              <th>Genero</th>
-              <th>Lateralidad</th>
-              <th>Se ejercita al menos 3 x a la semana</th>
-            </tr>
-          </thead>
-          <tbody style={{ fontSize: "0.65em" }}>{this.renderMuestras()}</tbody>
-        </table>
-        <ChardData></ChardData>
-        <div>
-          <h5>Graficas</h5>
-          <BarChart
-            data={[40, 10, 21, 2, 3, 3, 2, 1]}
-            labels={["20", "21", "19", "26", "22", "17", "18", "23"]}
-            title={"The Plot"}
-            color="red"
-          />
-          {this.renderBar()}
+          {this.renderEncuestas()}
+          <div>{console.log(this.state.data)}</div>
+          <table className="table table-striped">
+            <thead>
+              <tr style={{ fontSize: "0.85em" }}>
+                <th>#</th>
+                <th>Edad</th>
+                <th>Estatura</th>
+                <th>Peso</th>
+                <th>IMC</th>
+                <th>Grupo sanguineo</th>
+                <th>Genero</th>
+                <th>Lateralidad</th>
+                <th>Se ejercita al menos 3 x a la semana</th>
+              </tr>
+            </thead>
+            <tbody style={{ fontSize: "0.65em" }}>
+              {this.renderMuestras()}
+            </tbody>
+          </table>
         </div>
-      </div>
+        <div>
+          <div className="row col-12 mr-auto ml-auto mb-5">
+            {this.renderPie("genero")}
+            {this.renderPie("sangre")}
+            {this.renderPie("ejercita")}
+            {this.renderPie("lateralidad")}
+            {this.renderBar("edad")}
+          </div>
+        </div>
+      </React.Fragment>
     );
   }
 }

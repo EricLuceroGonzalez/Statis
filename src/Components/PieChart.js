@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import Chart from "chart.js";
 
+const pieStyle ={
+  backgroundColor: 'rgba(230,230,230,0.25)',
+  boxShadow: '3px 5px 5px gray',
+  padding: '10px 7px'
+}
 class PieChart extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +19,7 @@ class PieChart extends Component {
     this.myChart = new Chart(this.canvasRef.current, {
       type: "doughnut",
       options: {
-        maintainAspectRatio: false,
+        maintainAspectRatio: false
       },
       data: {
         labels: this.props.labels,
@@ -22,7 +27,8 @@ class PieChart extends Component {
           {
             label: this.props.title,
             data: this.props.data,
-            // backgroundColor: this.props.color
+            backgroundColor: this.props.color
+            // className="col-10 mr-auto ml-auto
           }
         ]
       }
@@ -30,11 +36,10 @@ class PieChart extends Component {
   }
   render() {
     return (
-      <React.Fragment>
-        <div className="col-10 mr-auto ml-auto">
-          <canvas ref={this.canvasRef} />
-        </div>
-      </React.Fragment>
+      <div className="pr-4 pl-4 mr-auto ml-auto mt-2 mb-2"
+      style={pieStyle}>
+        <canvas ref={this.canvasRef} width="250" height="250"></canvas>
+      </div>
     );
   }
 }
