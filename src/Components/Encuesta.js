@@ -157,6 +157,9 @@ class SurveyComponent extends Component {
     this.setState({ imc: indiceMC });
     return indiceMC;
   };
+  componentDidUpdate() {
+    this.renderIMC();
+  }
   renderIMC = () => {
     if (this.state.estatura && this.state.peso && this.state.edad !== "") {
       return (
@@ -164,7 +167,22 @@ class SurveyComponent extends Component {
           <Label style={labelSty} for="exampleName">
             Indice de Masa Corporal:
           </Label>
-          <div style={labelSty}>IMC = {this.state.imc}</div>
+          <div
+            style={{
+              fontFamily: "Montserrat-ExtraBold"
+            }}
+          >
+            Tu indice de masa corporal es:
+          </div>
+          <div
+            style={{
+              fontFamily: "Montserrat-ExtraBoldItalic",
+              color: "rgba(71,15,244,1)",
+              fontSize: "1.5em"
+            }}
+          >
+            {this.state.imc}
+          </div>
         </div>
       );
     }
