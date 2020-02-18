@@ -3,10 +3,8 @@ import api from "../api/api";
 import cogoToast from "cogo-toast";
 import "./formStyle.css";
 import {
-  // Container,
-  // ButtonGroup,
   Button,
-  // Form,
+  Badge,
   FormGroup,
   Label,
   Input
@@ -160,6 +158,29 @@ class SurveyComponent extends Component {
   componentDidUpdate() {
     this.renderIMC();
   }
+  renderIMCs = item => {
+    return item < 18.5 ? (
+      <div>
+        <p className="imc-min">{item}</p>
+        <Badge color="primary">Tu peso es inferior al normal</Badge>
+      </div>
+    ) : item < 24.9 ? (
+      <div>
+        <p className="imc-normal">{item}</p>
+        <Badge color="success">Tu peso es normal</Badge>
+      </div>
+    ) : item < 29.9 ? (
+      <div>
+        <p className="imc-hi">{item}</p>
+        <Badge color="warning">Tu peso es superior al normal</Badge>
+      </div>
+    ) : (
+      <div>
+        <p className="imc-ob">{item}</p>
+        <Badge color="danger">Tu peso es muy superior al normal</Badge>
+      </div>
+    );
+  };
   renderIMC = () => {
     if (this.state.estatura && this.state.peso && this.state.edad !== "") {
       return (
@@ -174,14 +195,8 @@ class SurveyComponent extends Component {
           >
             Tu indice de masa corporal es:
           </div>
-          <div
-            style={{
-              fontFamily: "Montserrat-ExtraBoldItalic",
-              color: "rgba(71,15,244,1)",
-              fontSize: "1.5em"
-            }}
-          >
-            {this.state.imc}
+          <div className="align-content-center">
+            {this.renderIMCs(this.state.imc)}
           </div>
         </div>
       );

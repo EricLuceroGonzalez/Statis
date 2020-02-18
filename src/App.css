@@ -46,41 +46,43 @@
   /* src: url('../fonts/poppins/Poppins-Regular.ttf');  */
 }
 
-
-.imc-min{
+.imc-min {
   color: rgb(0, 138, 230);
   font-family: Montserrat-ExtraBold;
 }
 
-.imc-normal{
+.imc-normal {
   color: green;
   font-family: Montserrat-ExtraBold;
 }
 
-.imc-hi{
+.imc-hi {
   color: rgb(255, 204, 0);
   font-family: Montserrat-ExtraBold;
 }
 
-.imc-ob{
+.imc-ob {
   color: red;
   font-family: Montserrat-ExtraBold;
 }
 
-.foot{
+.foot {
   color: white;
   font-family: Montserrat-ExtraBold;
 }
 
-.subbt{
+.subbt {
   font-family: Poppins-Light;
-  font-size: 0.80em;
+  font-size: 0.8em;
 }
 
+.lessSpace {
+  margin-top: -10px;
+  border: 1px solid;
+}
 .truki {
   background-color: red;
 }
-
 
 /* Jello effect */
 
@@ -183,24 +185,24 @@
  */
 @-webkit-keyframes color_change {
   0% {
-    border: 2px solid rgba(1,255,1,0.3);;
+    border: 2px solid rgba(1, 255, 1, 0.3);
   }
   50% {
-    border: 4px solid rgba(15, 155, 15,1);;
+    border: 4px solid rgba(15, 155, 15, 1);
   }
   100% {
-    border: 2px solid rgba(1,255,1,0.3);;
+    border: 2px solid rgba(1, 255, 1, 0.3);
   }
 }
 @keyframes color_change {
   0% {
-    border: 2px solid rgba(1,255,1,0.3);
+    border: 2px solid rgba(1, 255, 1, 0.3);
   }
   50% {
-    border: 4px solid rgba(15,155,15,1);;
+    border: 4px solid rgba(15, 155, 15, 1);
   }
   100% {
-    border: 2px solid rgba(1,255,1,0.3);;
+    border: 2px solid rgba(1, 255, 1, 0.3);
   }
 }
 
@@ -229,26 +231,25 @@
   }
 } */
 
-
 /**
  * ----------------------------------------
  * animation rgba(255,1,1,1)-flash
  * ----------------------------------------
  */
- @-webkit-keyframes color_error {
+@-webkit-keyframes color_error {
   0% {
-    border: 4px solid rgba(255,1,1,0.3);
+    border: 4px solid rgba(255, 1, 1, 0.3);
   }
   100% {
-    border: 4px solid rgba(255,1,1,1);
+    border: 4px solid rgba(255, 1, 1, 1);
   }
 }
 @keyframes color_error {
   0% {
-    border: 4px solid rgba(255,1,1,0.3);;
+    border: 4px solid rgba(255, 1, 1, 0.3);
   }
   100% {
-    border: 4px solid rgba(255,1,1,1);
+    border: 4px solid rgba(255, 1, 1, 1);
   }
 }
 
