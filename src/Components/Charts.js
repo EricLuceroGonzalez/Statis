@@ -11,7 +11,6 @@ class BarChart extends Component {
     this.canvasRef = React.createRef();
   }
   componentDidUpdate = () => {
-    console.log("********8  inside Bar");
 
     console.log(this.props.data);
     // console.log(this.state.labels);

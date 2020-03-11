@@ -1,11 +1,35 @@
 import React, { Component } from "react";
 import api from "../api/api";
 import axios from "axios";
+import ChardData from "./ChartData";
 import { Spinner } from "reactstrap";
 import BarChart from "./Charts";
-import ChardData from "./ChartData";
 import PieChart from "./PieChart";
+import { CSVLink } from "react-csv";
+import { withRouter } from "react-router-dom";
+import LoadingPage from "./LoadingPage";
 
+const header = [
+  { label: "Edad", key: "edad" },
+  { label: "Estatura", key: "estatura" },
+  { label: "Peso", key: "peso" },
+  { label: "IMC", key: "imc" },
+  { label: "Lateralidad", key: "lateralidad" },
+  { label: "Ejercita", key: "ejercita" },
+  { label: "Sangre", key: "sangre" },
+  { label: "Generp", key: "genero" }
+];
+// { label: "Fecha", key: "date" },
+const headers = [
+  { label: "Edad", key: "edad" },
+  { label: "Se ejercita 3 veces/semana", key: "ejercita" },
+  { label: "Estatura", key: "estatura" },
+  { label: "Genero", key: "genero" },
+  { label: "IMC", key: "imc" },
+  { label: "lateralidad", key: "lateralidad" },
+  { label: "peso", key: "peso" },
+  { label: "sangre", key: "sangre" }
+];
 class SurveyTableComponent extends Component {
   state = {
     estatura: [],
@@ -21,14 +45,12 @@ class SurveyTableComponent extends Component {
       .getMuestras()
       .then(res => {
         // console.log({ mensaje: "Get all data", response: res.data });
-        this.setState({ allMuestras: res.data });
+        this.setState({ allMuestras: res.data }, console.log(res.data[0]));
       })
       .catch(err => console.log(`GET - ERROR: ${err}`));
   }
 
   renderPie = theData => {
-    console.warn("Inside renderPie");
-
     // let edades = this.state.allMuestras.map(item => item.edad);
     let frequencyData = this.state.allMuestras.map(item => item[theData]);
 
@@ -40,7 +62,7 @@ class SurveyTableComponent extends Component {
         <Spinner className="mr-auto ml-auto" type="grow" color="primary" />
       );
     } else {
-      console.log("--------------------------");
+      //  console.log("--------------------------");
       console.log(plotData.dataValue);
       console.log(plotData.dataLabel);
       return (
@@ -62,7 +84,7 @@ class SurveyTableComponent extends Component {
   };
 
   renderBar(theData) {
-    console.warn("Inside renderPie");
+    // console.warn("Inside renderPie");
 
     // let edades = this.state.allMuestras.map(item => item.edad);
     let frequencyData = this.state.allMuestras.map(item => item[theData]);
@@ -75,9 +97,9 @@ class SurveyTableComponent extends Component {
         <Spinner className="mr-auto ml-auto" type="grow" color="primary" />
       );
     } else {
-      console.log("--------------------------");
-      console.log(plotData.dataValue);
-      console.log(plotData.dataLabel);
+      //  console.log("--------------------------");
+      //  console.log(plotData.dataValue);
+      //  console.log(plotData.dataLabel);
       return (
         <BarChart
           data={plotData.dataValue}
@@ -207,49 +229,77 @@ class SurveyTableComponent extends Component {
     }
   };
 
+  renderCSV() {
+    if (this.state.allMuestras.length === 0) {
+      return <div>Nothing</div>;
+    } else {
+      console.log(Object.keys(this.state.allMuestras));
+      return (
+        <div className="mt-2 mb-4">
+          <CSVLink
+            data={this.state.allMuestras}
+            filename={"my-file.csv"}
+            headers={headers}
+            separator={","}
+            className="btn floatCSV"
+            target="_blank"
+          >
+            Descargar
+            <span role="img" aria-label="memo">📝</span>
+          </CSVLink>
+        </div>
+      );
+    }
+  }
   render() {
-    return (
-      <React.Fragment>
-        <div
-          className="table-responsive"
-          style={{ margin: "90px 15px", fontFamily: "Poppins-Light" }}
-        >
-          {/*       <ChardData></ChardData>
+    if (this.state.allMuestras.length === 0) {
+      return <LoadingPage></LoadingPage>;
+    } else {
+      return (
+        <React.Fragment>
+          <div
+            className="table-responsive"
+            style={{ margin: "90px 15px", fontFamily: "Poppins-Light" }}
+          >
+            {/*       <ChardData></ChardData>
                   {this.renderBarChart()}
 
+
         */}
-          {this.renderEncuestas()}
-          <div>{console.log(this.state.data)}</div>
-          <table className="table table-striped">
-            <thead>
-              <tr style={{ fontSize: "0.85em" }}>
-                <th>#</th>
-                <th>Edad</th>
-                <th>Estatura</th>
-                <th>Peso</th>
-                <th>IMC</th>
-                <th>Grupo sanguineo</th>
-                <th>Genero</th>
-                <th>Lateralidad</th>
-                <th>Se ejercita al menos 3 x a la semana</th>
-              </tr>
-            </thead>
-            <tbody style={{ fontSize: "0.65em" }}>
-              {this.renderMuestras()}
-            </tbody>
-          </table>
-        </div>
-        <div>
-          <div className="row col-12 mr-auto ml-auto mb-5">
-            {this.renderPie("genero")}
-            {this.renderPie("sangre")}
-            {this.renderPie("ejercita")}
-            {this.renderPie("lateralidad")}
-            {this.renderBar("edad")}
+            {this.renderEncuestas()}
+            <table className="table table-striped">
+              <thead>
+                <tr style={{ fontSize: "0.85em" }}>
+                  <th>#</th>
+                  <th>Edad</th>
+                  <th>Estatura</th>
+                  <th>Peso</th>
+                  <th>IMC</th>
+                  <th>Grupo sanguineo</th>
+                  <th>Genero</th>
+                  <th>Lateralidad</th>
+                  <th>Se ejercita al menos 3 x a la semana</th>
+                </tr>
+              </thead>
+              <tbody style={{ fontSize: "0.65em" }}>
+                {this.renderMuestras()}
+              </tbody>
+            </table>
           </div>
-        </div>
-      </React.Fragment>
-    );
+          <div>
+            <div className="row col-12 mr-auto ml-auto mb-5">
+              {this.renderPie("genero")}
+              {this.renderPie("sangre")}
+              {this.renderPie("ejercita")}
+              {this.renderPie("lateralidad")}
+              {this.renderBar("edad")}
+            </div>
+
+            {this.renderCSV()}
+          </div>
+        </React.Fragment>
+      );
+    }
   }
 }
 
