@@ -329,9 +329,9 @@ class SurveyComponent extends Component {
               id="exampleSelect"
             >
               <option defaultValue="selected">{""}</option>
-              <option>Der</option>
-              <option>Izq</option>
-              <option>Ambi</option>
+              <option>Derecho</option>
+              <option>Izquierdo</option>
+              <option>Ambidestro</option>
             </Input>
           </FormGroup>
         </div>
