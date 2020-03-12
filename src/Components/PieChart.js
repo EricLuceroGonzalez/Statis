@@ -28,7 +28,6 @@ class PieChart extends Component {
             label: this.props.title,
             data: this.props.data,
             backgroundColor: this.props.color
-            // className="col-10 mr-auto ml-auto
           }
         ]
       }
@@ -36,9 +35,12 @@ class PieChart extends Component {
   }
   render() {
     return (
-        <div className="pr-4 pl-4 mr-auto ml-auto mt-2 mb-2" style={pieStyle}>
+      <div className="pr-4 pl-4 mr-auto ml-auto mt-2 mb-2" style={pieStyle}>
+        <div>
           <canvas ref={this.canvasRef} width="250" height="250"></canvas>
         </div>
+        <h4 style={{fontSize: '0.65em', marginTop: '10px', fontFamily: 'Montserrat-ExtraBold'}}>{this.props.theTitle}</h4>
+      </div>
     );
   }
 }

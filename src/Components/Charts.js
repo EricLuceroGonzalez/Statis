@@ -12,8 +12,6 @@ class BarChart extends Component {
   }
   componentDidUpdate = () => {
 
-    console.log(this.props.data);
-    // console.log(this.state.labels);
     this.myChart = new Chart(this.canvasRef.current, {
       type: "bar",
       options: {

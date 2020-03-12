@@ -1,24 +1,14 @@
 import React, { Component } from "react";
 import api from "../api/api";
-import axios from "axios";
-import ChardData from "./ChartData";
+// import axios from "axios";
+// import ChardData from "./ChartData";
+// import { withRouter } from "react-router-dom";
 import { Spinner } from "reactstrap";
 import BarChart from "./Charts";
 import PieChart from "./PieChart";
 import { CSVLink } from "react-csv";
-import { withRouter } from "react-router-dom";
 import LoadingPage from "./LoadingPage";
 
-const header = [
-  { label: "Edad", key: "edad" },
-  { label: "Estatura", key: "estatura" },
-  { label: "Peso", key: "peso" },
-  { label: "IMC", key: "imc" },
-  { label: "Lateralidad", key: "lateralidad" },
-  { label: "Ejercita", key: "ejercita" },
-  { label: "Sangre", key: "sangre" },
-  { label: "Generp", key: "genero" }
-];
 // { label: "Fecha", key: "date" },
 const headers = [
   { label: "Edad", key: "edad" },
@@ -45,7 +35,7 @@ class SurveyTableComponent extends Component {
       .getMuestras()
       .then(res => {
         // console.log({ mensaje: "Get all data", response: res.data });
-        this.setState({ allMuestras: res.data }, console.log(res.data[0]));
+        this.setState({ allMuestras: res.data });
       })
       .catch(err => console.log(`GET - ERROR: ${err}`));
   }
@@ -62,14 +52,37 @@ class SurveyTableComponent extends Component {
         <Spinner className="mr-auto ml-auto" type="grow" color="primary" />
       );
     } else {
-      //  console.log("--------------------------");
-      console.log(plotData.dataValue);
-      console.log(plotData.dataLabel);
+      var someTitle;
+      switch (theData) {
+        case "genero":
+          someTitle = "Genero";
+          break;
+        case "edad":
+          someTitle = "Edad";
+          break;
+        case "estatura":
+          someTitle = "Estatura";
+          break;
+        case "peso":
+          someTitle = "Masa";
+          break;
+        case "sangre":
+          someTitle = "Grupo sanguineo";
+          break;
+        case "ejercita":
+          someTitle = "Se ejercita al menos 3 veces por semana";
+          break;
+        case "lateralidad":
+          someTitle = "Lateralidad";
+          break;
+        default:
+          break;
+      }
       return (
         <PieChart
+          theTitle={someTitle}
           data={plotData.dataValue}
           labels={plotData.dataLabel}
-          title={"The Plot from function"}
           color={[
             "rgba(25, 255, 132, 0.75)",
             "rgba(12, 119, 252, 0.75)",
@@ -84,7 +97,6 @@ class SurveyTableComponent extends Component {
   };
 
   renderBar(theData) {
-    // console.warn("Inside renderPie");
 
     // let edades = this.state.allMuestras.map(item => item.edad);
     let frequencyData = this.state.allMuestras.map(item => item[theData]);
@@ -97,9 +109,6 @@ class SurveyTableComponent extends Component {
         <Spinner className="mr-auto ml-auto" type="grow" color="primary" />
       );
     } else {
-      //  console.log("--------------------------");
-      //  console.log(plotData.dataValue);
-      //  console.log(plotData.dataLabel);
       return (
         <BarChart
           data={plotData.dataValue}
@@ -233,74 +242,74 @@ class SurveyTableComponent extends Component {
     if (this.state.allMuestras.length === 0) {
       return <div>Nothing</div>;
     } else {
-      console.log(Object.keys(this.state.allMuestras));
       return (
         <div className="mt-2 mb-4">
           <CSVLink
             data={this.state.allMuestras}
-            filename={"my-file.csv"}
+            filename={"00-estadistica-DataSet.csv"}
             headers={headers}
             separator={","}
             className="btn floatCSV"
             target="_blank"
           >
             Descargar
-            <span role="img" aria-label="memo">📝</span>
+            <span role="img" aria-label="memo">
+              📝
+            </span>
           </CSVLink>
         </div>
       );
     }
   }
   render() {
-    if (this.state.allMuestras.length === 0) {
-      return <LoadingPage></LoadingPage>;
-    } else {
-      return (
-        <React.Fragment>
-          <div
-            className="table-responsive"
-            style={{ margin: "90px 15px", fontFamily: "Poppins-Light" }}
-          >
-            {/*       <ChardData></ChardData>
-                  {this.renderBarChart()}
-
-
-        */}
-            {this.renderEncuestas()}
-            <table className="table table-striped">
-              <thead>
-                <tr style={{ fontSize: "0.85em" }}>
-                  <th>#</th>
-                  <th>Edad</th>
-                  <th>Estatura</th>
-                  <th>Peso</th>
-                  <th>IMC</th>
-                  <th>Grupo sanguineo</th>
-                  <th>Genero</th>
-                  <th>Lateralidad</th>
-                  <th>Se ejercita al menos 3 x a la semana</th>
-                </tr>
-              </thead>
-              <tbody style={{ fontSize: "0.65em" }}>
-                {this.renderMuestras()}
-              </tbody>
-            </table>
-          </div>
+    return (
+      <React.Fragment>
+        <div
+          className="table-responsive"
+          style={{ margin: "90px 15px", fontFamily: "Poppins-Light" }}
+        >
+          {this.renderEncuestas()}
           <div>
-            <div className="row col-12 mr-auto ml-auto mb-5">
+            <div className="row col-lg-10 col-md-10 col-sm-12 col-xs 12 col-12 mr-auto ml-auto mb-5">
               {this.renderPie("genero")}
               {this.renderPie("sangre")}
               {this.renderPie("ejercita")}
               {this.renderPie("lateralidad")}
               {this.renderBar("edad")}
             </div>
-
             {this.renderCSV()}
           </div>
-        </React.Fragment>
-      );
-    }
+
+          <table className="table table-striped">
+            <thead>
+              <tr
+                style={{
+                  fontSize: "0.85em",
+                  backgroundColor: "rgba(155,74,177,1)",
+                  color: "white",
+                  fontFamily: "Montserrat-ExtraBold"
+                }}
+              >
+                <th>#</th>
+                <th>Edad</th>
+                <th>Estatura</th>
+                <th>Peso</th>
+                <th>IMC</th>
+                <th>Grupo sanguineo</th>
+                <th>Genero</th>
+                <th>Lateralidad</th>
+                <th>Se ejercita al menos 3 x a la semana</th>
+              </tr>
+            </thead>
+            <tbody style={{ fontSize: "0.65em" }}>
+              {this.renderMuestras()}
+            </tbody>
+          </table>
+        </div>
+      </React.Fragment>
+    );
   }
+  // }
 }
 
 export default SurveyTableComponent;
