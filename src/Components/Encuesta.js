@@ -86,68 +86,68 @@ class SurveyComponent extends Component {
     this.setState({
       activeThumb: !this.state.activeThumb
     });
-    api
-      .postMuestra(this.state)
-      .then(res => {
-        // console.log({ mensaje: "Post exitoso", response: res.data });
-        const { hide } = cogoToast.success(
-          <div style={{ color: "rgba(63,10,88,1)" }}>
-            <b>Gracias!</b>
-            <div
-              style={{
-                fontFamily: "Montserrat-ExtraBold"
-              }}
-            >
-              Tu indice de masa corporal es:
-            </div>
-            <div
-              style={{
-                fontFamily: "Montserrat-ExtraBoldItalic",
-                color: "rgba(71,15,244,1)",
-                fontSize: "1.5em"
-              }}
-            >
-              {this.state.imc}
-            </div>
-          </div>,
-          {
-            position: "bottom-right",
-            heading: "Gracias!",
-            onClick: () => {
-              hide();
-              // window.location = "/";
-            }
-          }
-        );
-        this.setState({
-          estatura: "",
-          peso: "",
-          edad: "",
-          imc: "",
-          lateralidad: "",
-          ejercita: "",
-          sangre: "",
-          genero: ""
-        });
-        // this.props.history.push('https://statistik-a.herokuapp.com/api/Stats')
-        // window.location = "/Stats";
-      })
-      .catch(err => {
-        const { hide } = cogoToast.error(
-          <div style={{ color: "rgba(63,10,88,1)" }}>
-            <b>Espera!</b>
-            <div>Hacen falta campos por llenar</div>
-          </div>,
-          {
-            position: "bottom-right",
-            hideAfter: 3,
-            onClick: () => {
-              hide();
-              // window.location = "/";
-            }
-          }
-        );
-      });
+    // api
+    //   .postMuestra(this.state)
+    //   .then(res => {
+    //     // console.log({ mensaje: "Post exitoso", response: res.data });
+    //     const { hide } = cogoToast.success(
+    //       <div style={{ color: "rgba(63,10,88,1)" }}>
+    //         <b>Gracias!</b>
+    //         <div
+    //           style={{
+    //             fontFamily: "Montserrat-ExtraBold"
+    //           }}
+    //         >
+    //           Tu indice de masa corporal es:
+    //         </div>
+    //         <div
+    //           style={{
+    //             fontFamily: "Montserrat-ExtraBoldItalic",
+    //             color: "rgba(71,15,244,1)",
+    //             fontSize: "1.5em"
+    //           }}
+    //         >
+    //           {this.state.imc}
+    //         </div>
+    //       </div>,
+    //       {
+    //         position: "bottom-right",
+    //         heading: "Gracias!",
+    //         onClick: () => {
+    //           hide();
+    //           // window.location = "/";
+    //         }
+    //       }
+    //     );
+    //     this.setState({
+    //       estatura: "",
+    //       peso: "",
+    //       edad: "",
+    //       imc: "",
+    //       lateralidad: "",
+    //       ejercita: "",
+    //       sangre: "",
+    //       genero: ""
+    //     });
+    //     // this.props.history.push('https://statistik-a.herokuapp.com/api/Stats')
+    //     // window.location = "/Stats";
+    //   })
+    //   .catch(err => {
+    //     const { hide } = cogoToast.error(
+    //       <div style={{ color: "rgba(63,10,88,1)" }}>
+    //         <b>Espera!</b>
+    //         <div>Hacen falta campos por llenar</div>
+    //       </div>,
+    //       {
+    //         position: "bottom-right",
+    //         hideAfter: 3,
+    //         onClick: () => {
+    //           hide();
+    //           // window.location = "/";
+    //         }
+    //       }
+    //     );
+    //   });
   };
 
   calculaIMC = (peso, estatura) => {
